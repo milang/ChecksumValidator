@@ -16,6 +16,7 @@
     <DocumentationFile>..\..\build\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ApplicationIcon>Resources\App.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +63,9 @@
     <None Include="Resources\OpenHS.png" />
     <None Include="Resources\PasteHS.png" />
     <None Include="Resources\RunHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\App.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

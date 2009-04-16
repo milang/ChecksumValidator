@@ -65,7 +65,7 @@
             layout.Location = new System.Drawing.Point(0, 0);
             layout.Margin = new System.Windows.Forms.Padding(0);
             layout.Name = "layout";
-            layout.Padding = new System.Windows.Forms.Padding(3, 9, 3, 6);
+            layout.Padding = new System.Windows.Forms.Padding(3, 9, 3, 9);
             layout.RowCount = 6;
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -73,7 +73,7 @@
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            layout.Size = new System.Drawing.Size(418, 165);
+            layout.Size = new System.Drawing.Size(439, 168);
             layout.TabIndex = 0;
             // 
             // _fileLabel
@@ -93,7 +93,7 @@
             this._file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._file.Location = new System.Drawing.Point(6, 27);
             this._file.Name = "_file";
-            this._file.Size = new System.Drawing.Size(319, 20);
+            this._file.Size = new System.Drawing.Size(340, 20);
             this._file.TabIndex = 0;
             this._file.TextChanged += new System.EventHandler(this.CheckComputationAvailability);
             // 
@@ -103,7 +103,7 @@
             this._fileBrowse.AutoSize = true;
             this._fileBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._fileBrowse.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Open;
-            this._fileBrowse.Location = new System.Drawing.Point(331, 25);
+            this._fileBrowse.Location = new System.Drawing.Point(352, 25);
             this._fileBrowse.Name = "_fileBrowse";
             this._fileBrowse.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._fileBrowse.Size = new System.Drawing.Size(81, 25);
@@ -129,7 +129,7 @@
             this._checksum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._checksum.Location = new System.Drawing.Point(6, 80);
             this._checksum.Name = "_checksum";
-            this._checksum.Size = new System.Drawing.Size(319, 20);
+            this._checksum.Size = new System.Drawing.Size(340, 20);
             this._checksum.TabIndex = 0;
             this._checksum.TextChanged += new System.EventHandler(this.CheckComputationAvailability);
             // 
@@ -139,7 +139,7 @@
             this._checksumPaste.AutoSize = true;
             this._checksumPaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._checksumPaste.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Paste;
-            this._checksumPaste.Location = new System.Drawing.Point(331, 78);
+            this._checksumPaste.Location = new System.Drawing.Point(352, 78);
             this._checksumPaste.Name = "_checksumPaste";
             this._checksumPaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._checksumPaste.Size = new System.Drawing.Size(81, 25);
@@ -169,7 +169,7 @@
             this._result.Location = new System.Drawing.Point(6, 133);
             this._result.Name = "_result";
             this._result.ReadOnly = true;
-            this._result.Size = new System.Drawing.Size(319, 20);
+            this._result.Size = new System.Drawing.Size(340, 20);
             this._result.TabIndex = 0;
             // 
             // _resultCompute
@@ -179,7 +179,7 @@
             this._resultCompute.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._resultCompute.Enabled = false;
             this._resultCompute.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Run;
-            this._resultCompute.Location = new System.Drawing.Point(331, 131);
+            this._resultCompute.Location = new System.Drawing.Point(352, 131);
             this._resultCompute.Name = "_resultCompute";
             this._resultCompute.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._resultCompute.Size = new System.Drawing.Size(81, 25);
@@ -216,9 +216,10 @@
             this.ClientSize = new System.Drawing.Size(458, 211);
             this.Controls.Add(layout);
             this.Controls.Add(cancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "SHA1 checksum verifier";
+            this.Text = "Checksum verifier";
             layout.ResumeLayout(false);
             layout.PerformLayout();
             this.ResumeLayout(false);

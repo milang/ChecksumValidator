@@ -24,6 +24,7 @@ namespace Gardian.Utilities.ChecksumValidator
         {
             this.InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
+            this.Icon = Properties.Resources.App;
 
             var ongoingPulses = new List<object>();
             this._greenPulser = new ColorPulser(
