@@ -155,10 +155,10 @@ namespace Gardian.Utilities.ChecksumValidator
             }
             catch (Exception ex)
             {
-                error = TracingUtilities.BuildExceptionReport(
+                error = TraceUtilities.BuildExceptionReport(
                     "Checksum computation failed",
                     string.Empty, null, ex, null).ToString();
-                TracingUtilities.TraceMultilineText(error, "Checksum Error");
+                TraceUtilities.TraceMultilineText(error, "Checksum Error");
             }
 
             this.BeginInvoke(new Action<string, string>(this.OnComputeReportResults), checksum, error); // marshall to the UI thread

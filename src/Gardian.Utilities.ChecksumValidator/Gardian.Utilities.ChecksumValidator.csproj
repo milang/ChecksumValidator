@@ -58,7 +58,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="TracingUtilities.cs" />
+    <Compile Include="TraceUtilities.cs" />
     <None Include="Resources\OpenHS.png" />
     <None Include="Resources\PasteHS.png" />
     <None Include="Resources\RunHS.png" />

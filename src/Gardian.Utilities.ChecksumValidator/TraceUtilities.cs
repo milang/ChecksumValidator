@@ -16,7 +16,7 @@ namespace Gardian.Utilities.ChecksumValidator
     /// <summary>
     /// Collection of tracing methods.
     /// </summary>
-    public static class TracingUtilities
+    public static class TraceUtilities
     {
 
         ///------------------------------------------------
