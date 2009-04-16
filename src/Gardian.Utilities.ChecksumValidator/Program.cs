@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Sha1Check
+namespace Gardian.Utilities.ChecksumValidator
 {
 
     // .NET 3.5 - style delegates

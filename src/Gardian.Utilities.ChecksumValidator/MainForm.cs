@@ -5,9 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
-using Pandell.Common;
-
-namespace Sha1Check
+namespace Gardian.Utilities.ChecksumValidator
 {
 
     /// <summary>
@@ -157,10 +155,10 @@ namespace Sha1Check
             }
             catch (Exception ex)
             {
-                error = Utilities.BuildExceptionReport(
+                error = TracingUtilities.BuildExceptionReport(
                     "Checksum computation failed",
                     string.Empty, null, ex, null).ToString();
-                Utilities.TraceMultilineText(error, "Checksum Error");
+                TracingUtilities.TraceMultilineText(error, "Checksum Error");
             }
 
             this.BeginInvoke(new Action<string, string>(this.OnComputeReportResults), checksum, error); // marshall to the UI thread
@@ -212,9 +210,9 @@ namespace Sha1Check
             {
                 var identical = StringComparer.OrdinalIgnoreCase.Equals(checksum, this._checksum.Text.Trim());
                 this._result.Text = string.Concat(
-                        checksum ?? "(no results)",
-                        " - ",
-                        identical ? "OK" : "INVALID");
+                    checksum ?? "(no results)",
+                    " - ",
+                    identical ? "OK" : "INVALID");
                 this._result.ForeColor = identical ? Color.Green : Color.Red;
                 if (identical)
                 {

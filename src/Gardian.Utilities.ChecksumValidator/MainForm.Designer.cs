@@ -1,4 +1,4 @@
-﻿namespace Sha1Check
+﻿namespace Gardian.Utilities.ChecksumValidator
 {
     partial class MainForm
     {
@@ -13,9 +13,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -102,7 +102,7 @@
             this._fileBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._fileBrowse.AutoSize = true;
             this._fileBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._fileBrowse.Image = global::Sha1Check.Properties.Resources.Open;
+            this._fileBrowse.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Open;
             this._fileBrowse.Location = new System.Drawing.Point(331, 25);
             this._fileBrowse.Name = "_fileBrowse";
             this._fileBrowse.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -138,7 +138,7 @@
             this._checksumPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._checksumPaste.AutoSize = true;
             this._checksumPaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._checksumPaste.Image = global::Sha1Check.Properties.Resources.Paste;
+            this._checksumPaste.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Paste;
             this._checksumPaste.Location = new System.Drawing.Point(331, 78);
             this._checksumPaste.Name = "_checksumPaste";
             this._checksumPaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -178,7 +178,7 @@
             this._resultCompute.AutoSize = true;
             this._resultCompute.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._resultCompute.Enabled = false;
-            this._resultCompute.Image = global::Sha1Check.Properties.Resources.Run;
+            this._resultCompute.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Run;
             this._resultCompute.Location = new System.Drawing.Point(331, 131);
             this._resultCompute.Name = "_resultCompute";
             this._resultCompute.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -240,4 +240,3 @@
         private System.Windows.Forms.Timer _timer;
     }
 }
-
