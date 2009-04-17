@@ -81,7 +81,7 @@
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            layout.Size = new System.Drawing.Size(445, 200);
+            layout.Size = new System.Drawing.Size(458, 200);
             layout.TabIndex = 0;
             // 
             // _methodsContainer
@@ -167,12 +167,12 @@
             // 
             this._fileBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._fileBrowse.AutoSize = true;
-            this._fileBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._fileBrowse.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Open;
+            this._fileBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._fileBrowse.Location = new System.Drawing.Point(355, 57);
             this._fileBrowse.Name = "_fileBrowse";
-            this._fileBrowse.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._fileBrowse.Size = new System.Drawing.Size(81, 25);
+            this._fileBrowse.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
+            this._fileBrowse.Size = new System.Drawing.Size(94, 25);
             this._fileBrowse.TabIndex = 0;
             this._fileBrowse.Text = " Browse";
             this._fileBrowse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -202,12 +202,12 @@
             // 
             this._checksumPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._checksumPaste.AutoSize = true;
-            this._checksumPaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._checksumPaste.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Paste;
+            this._checksumPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._checksumPaste.Location = new System.Drawing.Point(355, 110);
             this._checksumPaste.Name = "_checksumPaste";
-            this._checksumPaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._checksumPaste.Size = new System.Drawing.Size(81, 25);
+            this._checksumPaste.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
+            this._checksumPaste.Size = new System.Drawing.Size(94, 25);
             this._checksumPaste.TabIndex = 0;
             this._checksumPaste.Text = " Paste";
             this._checksumPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -241,13 +241,13 @@
             // 
             this._resultCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._resultCompute.AutoSize = true;
-            this._resultCompute.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._resultCompute.Enabled = false;
             this._resultCompute.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Run;
+            this._resultCompute.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._resultCompute.Location = new System.Drawing.Point(355, 163);
             this._resultCompute.Name = "_resultCompute";
-            this._resultCompute.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._resultCompute.Size = new System.Drawing.Size(81, 25);
+            this._resultCompute.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
+            this._resultCompute.Size = new System.Drawing.Size(94, 25);
             this._resultCompute.TabIndex = 0;
             this._resultCompute.Text = "Compute";
             this._resultCompute.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -278,7 +278,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = cancel;
-            this.ClientSize = new System.Drawing.Size(494, 273);
+            this.ClientSize = new System.Drawing.Size(494, 274);
             this.Controls.Add(layout);
             this.Controls.Add(cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
