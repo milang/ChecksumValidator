@@ -3,18 +3,30 @@ using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 
 namespace Gardian.Utilities.ChecksumValidator
 {
 
     /// <summary>
+    /// Checksum computation implementation.
     /// </summary>
     internal static class Checksum
     {
 
+        //**************************************************
+        //* Public interface
+        //**************************************************
+
         //-------------------------------------------------
         /// <summary>
+        /// Compute checksum for the specified source file,
+        /// return it as hex string ("F3BA87...").
         /// </summary>
+        /// <remarks>
+        /// This method will be run on a worker thread
+        /// (from thread pool) via async invocation.
+        /// </remarks>
         public static string ComputeChecksum(string sourceFile, ChecksumMethod method, Action<decimal> progressNotifier)
         {
             System.Threading.Thread.Sleep(100);
@@ -35,7 +47,30 @@ namespace Gardian.Utilities.ChecksumValidator
 
         //-------------------------------------------------
         /// <summary>
+        /// Flag that requests cancellation of the current computation
+        /// (if set to true and a computation is ongoing).
         /// </summary>
+        /// <remarks>
+        /// Field marked as volatile because it will be accessed
+        /// by multiple threads (UI thread to set it, worker
+        /// thread to check it).
+        /// </remarks>
+        public static volatile bool Cancel;
+
+
+
+
+        //**************************************************
+        //* Private
+        //**************************************************
+
+        //-------------------------------------------------
+        /// <summary>
+        /// Find hash algorithm that corresponds to the
+        /// requested method
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown
+        /// when requested method is not recognized.</exception>
         private static HashAlgorithm CreateHashAlgorithm(ChecksumMethod method)
         {
             switch (method)
@@ -50,6 +85,17 @@ namespace Gardian.Utilities.ChecksumValidator
 
         //-------------------------------------------------
         /// <summary>
+        /// Custom stream for hash algorithm that only implements
+        /// Read &amp; Dispose methods (every other method will
+        /// throw NotSupportedException). This class implements
+        /// a bridge pattern (both Read and Dispose are forwarded
+        /// to the underlying "tracked" stream). The only extra
+        /// functionality is that if Read operation read another
+        /// megabyte of data since last progress notifier invocation,
+        /// progress percentage is recomputed and progress notifier
+        /// is called with this value. This allows us to track
+        /// progress of hash computation even though HashAlgorithm
+        /// does not support this.
         /// </summary>
         private sealed class TrackingStream : Stream
         {
@@ -83,6 +129,10 @@ namespace Gardian.Utilities.ChecksumValidator
             {
                 var ret = this._trackedStream.Read(buffer, offset, count);
 
+                if (Checksum.Cancel)
+                {
+                    throw new ThreadInterruptedException();
+                }
                 if (this._progressNotifier != null)
                 {
                     var position = this._trackedStream.Position;

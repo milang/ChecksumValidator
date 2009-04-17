@@ -4,17 +4,21 @@
 using System;
 using System.Security.Cryptography;
 
+/// <summary>
+/// </summary>
 public sealed class CRC32 : HashAlgorithm
 {
 
     /// <summary>
     /// Default polynomial used for CRC32 computation.
     /// </summary>
+    [CLSCompliant(false)]
     public const UInt32 DefaultPolynomial = 0xedb88320;
 
     /// <summary>
     /// Default CRC32 computation seed.
     /// </summary>
+    [CLSCompliant(false)]
     public const UInt32 DefaultSeed = 0xffffffff;
 
     private UInt32 _hash;
@@ -33,6 +37,7 @@ public sealed class CRC32 : HashAlgorithm
 
     ///<summary>
     ///</summary>
+    [CLSCompliant(false)]
     public CRC32(UInt32 polynomial, UInt32 seed)
     {
         this._table = InitializeTable(polynomial);
@@ -40,16 +45,22 @@ public sealed class CRC32 : HashAlgorithm
         Initialize();
     }
 
+    /// <summary>
+    /// </summary>
     public override void Initialize()
     {
         this._hash = this._seed;
     }
 
+    /// <summary>
+    /// </summary>
     protected override void HashCore(byte[] buffer, int start, int length)
     {
         this._hash = CalculateHash(this._table, this._hash, buffer, start, length);
     }
 
+    /// <summary>
+    /// </summary>
     protected override byte[] HashFinal()
     {
         byte[] hashBuffer = UInt32ToBigEndianBytes(~this._hash);
@@ -57,6 +68,8 @@ public sealed class CRC32 : HashAlgorithm
         return hashBuffer;
     }
 
+    /// <summary>
+    /// </summary>
     public override int HashSize
     {
         get { return 32; }
@@ -64,6 +77,7 @@ public sealed class CRC32 : HashAlgorithm
 
     /// <summary>
     /// </summary>
+    [CLSCompliant(false)]
     public static UInt32 Compute(byte[] buffer)
     {
         return ~CalculateHash(InitializeTable(DefaultPolynomial), DefaultSeed, buffer, 0, buffer.Length);
@@ -71,6 +85,7 @@ public sealed class CRC32 : HashAlgorithm
 
     /// <summary>
     /// </summary>
+    [CLSCompliant(false)]
     public static UInt32 Compute(UInt32 seed, byte[] buffer)
     {
         return ~CalculateHash(InitializeTable(DefaultPolynomial), seed, buffer, 0, buffer.Length);
@@ -78,6 +93,7 @@ public sealed class CRC32 : HashAlgorithm
 
     /// <summary>
     /// </summary>
+    [CLSCompliant(false)]
     public static UInt32 Compute(UInt32 polynomial, UInt32 seed, byte[] buffer)
     {
         return ~CalculateHash(InitializeTable(polynomial), seed, buffer, 0, buffer.Length);

@@ -63,12 +63,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="TraceUtilities.cs" />
+    <None Include="Resources\App.ico" />
     <None Include="Resources\OpenHS.png" />
     <None Include="Resources\PasteHS.png" />
     <None Include="Resources\RunHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\App.ico" />
+    <None Include="Resources\StopHS.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
