@@ -15,13 +15,13 @@ namespace Gardian.Utilities.ChecksumValidator
         //-------------------------------------------------
         /// <summary>
         /// </summary>
-        public static string ComputeSha1(string sourceFile, Action<decimal> progressNotifier)
+        public static string ComputeChecksum(string sourceFile, ChecksumMethod method, Action<decimal> progressNotifier)
         {
             System.Threading.Thread.Sleep(100);
-            using (var sha = new SHA1CryptoServiceProvider())
+            using (var hashAlgorithm = CreateHashAlgorithm(method))
             using (var source = new TrackingStream(File.OpenRead(sourceFile), progressNotifier))
             {
-                var hash = sha.ComputeHash(source);
+                var hash = hashAlgorithm.ComputeHash(source);
 
                 var msg = new StringBuilder(128);
                 foreach (var byteValue in hash)
@@ -29,6 +29,20 @@ namespace Gardian.Utilities.ChecksumValidator
                     msg.AppendFormat(byteValue.ToString("X2", CultureInfo.InvariantCulture));
                 }
                 return msg.ToString();
+            }
+        }
+
+
+        //-------------------------------------------------
+        /// <summary>
+        /// </summary>
+        private static HashAlgorithm CreateHashAlgorithm(ChecksumMethod method)
+        {
+            switch (method)
+            {
+                case ChecksumMethod.Sha1: return new SHA1CryptoServiceProvider();
+                case ChecksumMethod.Md5: return new MD5CryptoServiceProvider();
+                default: throw new NotSupportedException(string.Concat("Requested checksum method ", method, " is not supported"));
             }
         }
 

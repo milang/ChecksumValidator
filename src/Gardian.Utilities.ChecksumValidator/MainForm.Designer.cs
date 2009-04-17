@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TableLayoutPanel layout;
             System.Windows.Forms.Button cancel;
+            this._methodsContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this._methodLabel = new System.Windows.Forms.Label();
+            this._methodSha1 = new System.Windows.Forms.RadioButton();
+            this._methodMd5 = new System.Windows.Forms.RadioButton();
             this._fileLabel = new System.Windows.Forms.Label();
             this._file = new System.Windows.Forms.TextBox();
             this._fileBrowse = new System.Windows.Forms.Button();
@@ -44,6 +48,7 @@
             layout = new System.Windows.Forms.TableLayoutPanel();
             cancel = new System.Windows.Forms.Button();
             layout.SuspendLayout();
+            this._methodsContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // layout
@@ -51,38 +56,87 @@
             layout.AutoSize = true;
             layout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             layout.ColumnCount = 2;
-            layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            layout.Controls.Add(this._fileLabel, 0, 0);
-            layout.Controls.Add(this._file, 0, 1);
-            layout.Controls.Add(this._fileBrowse, 1, 1);
-            layout.Controls.Add(this._checksumLabel, 0, 2);
-            layout.Controls.Add(this._checksum, 0, 3);
-            layout.Controls.Add(this._checksumPaste, 1, 3);
-            layout.Controls.Add(this._resultLabel, 0, 4);
-            layout.Controls.Add(this._result, 0, 5);
-            layout.Controls.Add(this._resultCompute, 1, 5);
+            layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            layout.Controls.Add(this._methodsContainer, 0, 0);
+            layout.Controls.Add(this._fileLabel, 0, 1);
+            layout.Controls.Add(this._file, 0, 2);
+            layout.Controls.Add(this._fileBrowse, 1, 2);
+            layout.Controls.Add(this._checksumLabel, 0, 3);
+            layout.Controls.Add(this._checksum, 0, 4);
+            layout.Controls.Add(this._checksumPaste, 1, 4);
+            layout.Controls.Add(this._resultLabel, 0, 5);
+            layout.Controls.Add(this._result, 0, 6);
+            layout.Controls.Add(this._resultCompute, 1, 6);
             layout.Location = new System.Drawing.Point(0, 0);
             layout.Margin = new System.Windows.Forms.Padding(0);
             layout.Name = "layout";
-            layout.Padding = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            layout.RowCount = 6;
+            layout.Padding = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            layout.RowCount = 7;
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            layout.Size = new System.Drawing.Size(439, 168);
+            layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            layout.Size = new System.Drawing.Size(445, 200);
             layout.TabIndex = 0;
+            // 
+            // _methodsContainer
+            // 
+            this._methodsContainer.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this._methodsContainer.AutoSize = true;
+            this._methodsContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            layout.SetColumnSpan(this._methodsContainer, 2);
+            this._methodsContainer.Controls.Add(this._methodLabel);
+            this._methodsContainer.Controls.Add(this._methodSha1);
+            this._methodsContainer.Controls.Add(this._methodMd5);
+            this._methodsContainer.Location = new System.Drawing.Point(6, 9);
+            this._methodsContainer.Margin = new System.Windows.Forms.Padding(0);
+            this._methodsContainer.Name = "_methodsContainer";
+            this._methodsContainer.Size = new System.Drawing.Size(214, 23);
+            this._methodsContainer.TabIndex = 0;
+            // 
+            // _methodLabel
+            // 
+            this._methodLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this._methodLabel.AutoSize = true;
+            this._methodLabel.Location = new System.Drawing.Point(0, 5);
+            this._methodLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this._methodLabel.Name = "_methodLabel";
+            this._methodLabel.Size = new System.Drawing.Size(98, 13);
+            this._methodLabel.TabIndex = 0;
+            this._methodLabel.Text = "Checksum method:";
+            // 
+            // _methodSha1
+            // 
+            this._methodSha1.AutoSize = true;
+            this._methodSha1.Checked = true;
+            this._methodSha1.Location = new System.Drawing.Point(104, 3);
+            this._methodSha1.Name = "_methodSha1";
+            this._methodSha1.Size = new System.Drawing.Size(53, 17);
+            this._methodSha1.TabIndex = 0;
+            this._methodSha1.TabStop = true;
+            this._methodSha1.Text = "SHA1";
+            this._methodSha1.UseVisualStyleBackColor = true;
+            // 
+            // _methodMd5
+            // 
+            this._methodMd5.AutoSize = true;
+            this._methodMd5.Location = new System.Drawing.Point(163, 3);
+            this._methodMd5.Name = "_methodMd5";
+            this._methodMd5.Size = new System.Drawing.Size(48, 17);
+            this._methodMd5.TabIndex = 0;
+            this._methodMd5.Text = "MD5";
+            this._methodMd5.UseVisualStyleBackColor = true;
             // 
             // _fileLabel
             // 
             this._fileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._fileLabel.AutoSize = true;
-            layout.SetColumnSpan(this._fileLabel, 2);
-            this._fileLabel.Location = new System.Drawing.Point(3, 9);
-            this._fileLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this._fileLabel.Location = new System.Drawing.Point(6, 41);
+            this._fileLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
             this._fileLabel.Name = "_fileLabel";
             this._fileLabel.Size = new System.Drawing.Size(66, 13);
             this._fileLabel.TabIndex = 0;
@@ -91,7 +145,7 @@
             // _file
             // 
             this._file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this._file.Location = new System.Drawing.Point(6, 27);
+            this._file.Location = new System.Drawing.Point(9, 59);
             this._file.Name = "_file";
             this._file.Size = new System.Drawing.Size(340, 20);
             this._file.TabIndex = 0;
@@ -103,7 +157,7 @@
             this._fileBrowse.AutoSize = true;
             this._fileBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._fileBrowse.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Open;
-            this._fileBrowse.Location = new System.Drawing.Point(352, 25);
+            this._fileBrowse.Location = new System.Drawing.Point(355, 57);
             this._fileBrowse.Name = "_fileBrowse";
             this._fileBrowse.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._fileBrowse.Size = new System.Drawing.Size(81, 25);
@@ -117,7 +171,7 @@
             // 
             this._checksumLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._checksumLabel.AutoSize = true;
-            this._checksumLabel.Location = new System.Drawing.Point(3, 62);
+            this._checksumLabel.Location = new System.Drawing.Point(6, 94);
             this._checksumLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
             this._checksumLabel.Name = "_checksumLabel";
             this._checksumLabel.Size = new System.Drawing.Size(108, 13);
@@ -127,7 +181,7 @@
             // _checksum
             // 
             this._checksum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this._checksum.Location = new System.Drawing.Point(6, 80);
+            this._checksum.Location = new System.Drawing.Point(9, 112);
             this._checksum.Name = "_checksum";
             this._checksum.Size = new System.Drawing.Size(340, 20);
             this._checksum.TabIndex = 0;
@@ -139,7 +193,7 @@
             this._checksumPaste.AutoSize = true;
             this._checksumPaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._checksumPaste.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Paste;
-            this._checksumPaste.Location = new System.Drawing.Point(352, 78);
+            this._checksumPaste.Location = new System.Drawing.Point(355, 110);
             this._checksumPaste.Name = "_checksumPaste";
             this._checksumPaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._checksumPaste.Size = new System.Drawing.Size(81, 25);
@@ -154,7 +208,7 @@
             this._resultLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._resultLabel.AutoSize = true;
             this._resultLabel.Enabled = false;
-            this._resultLabel.Location = new System.Drawing.Point(3, 115);
+            this._resultLabel.Location = new System.Drawing.Point(6, 147);
             this._resultLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
             this._resultLabel.Name = "_resultLabel";
             this._resultLabel.Size = new System.Drawing.Size(111, 13);
@@ -166,7 +220,7 @@
             this._result.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._result.BackColor = System.Drawing.SystemColors.Window;
             this._result.Enabled = false;
-            this._result.Location = new System.Drawing.Point(6, 133);
+            this._result.Location = new System.Drawing.Point(9, 165);
             this._result.Name = "_result";
             this._result.ReadOnly = true;
             this._result.Size = new System.Drawing.Size(340, 20);
@@ -179,7 +233,7 @@
             this._resultCompute.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._resultCompute.Enabled = false;
             this._resultCompute.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Run;
-            this._resultCompute.Location = new System.Drawing.Point(352, 131);
+            this._resultCompute.Location = new System.Drawing.Point(355, 163);
             this._resultCompute.Name = "_resultCompute";
             this._resultCompute.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._resultCompute.Size = new System.Drawing.Size(81, 25);
@@ -213,7 +267,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = cancel;
-            this.ClientSize = new System.Drawing.Size(458, 211);
+            this.ClientSize = new System.Drawing.Size(494, 273);
             this.Controls.Add(layout);
             this.Controls.Add(cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -222,6 +276,8 @@
             this.Text = "Checksum verifier";
             layout.ResumeLayout(false);
             layout.PerformLayout();
+            this._methodsContainer.ResumeLayout(false);
+            this._methodsContainer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +285,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label _fileLabel;
         private System.Windows.Forms.TextBox _file;
         private System.Windows.Forms.Label _checksumLabel;
         private System.Windows.Forms.TextBox _checksum;
@@ -239,5 +294,10 @@
         private System.Windows.Forms.Button _resultCompute;
         private System.Windows.Forms.TextBox _result;
         private System.Windows.Forms.Timer _timer;
+        private System.Windows.Forms.Label _fileLabel;
+        private System.Windows.Forms.RadioButton _methodSha1;
+        private System.Windows.Forms.RadioButton _methodMd5;
+        private System.Windows.Forms.FlowLayoutPanel _methodsContainer;
+        private System.Windows.Forms.Label _methodLabel;
     }
 }

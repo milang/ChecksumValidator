@@ -25,6 +25,8 @@ namespace Gardian.Utilities.ChecksumValidator
             this.InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
             this.Icon = Properties.Resources.App;
+            var boldFont = new Font(this.Font, FontStyle.Bold);
+            this._methodLabel.Font = this._fileLabel.Font = this._checksumLabel.Font = this._resultLabel.Font = boldFont;
 
             var ongoingPulses = new List<object>();
             this._greenPulser = new ColorPulser(
@@ -123,6 +125,7 @@ namespace Gardian.Utilities.ChecksumValidator
                 return;
             }
 
+            this._methodsContainer.Enabled = false;
             this._checksumLabel.Enabled = false;
             this._checksum.Enabled = false;
             this._checksumPaste.Enabled = false;
@@ -133,12 +136,17 @@ namespace Gardian.Utilities.ChecksumValidator
             this._result.Focus();
             this._result.ForeColor = SystemColors.ControlText;
             this.OnComputeProgress(0m);
-            this._greenPulser.Pulse(this._result);
+            //this._greenPulser.Pulse(this._result);
             this._resultCompute.Enabled = false;
 
             this._error = null;
-            Func<string, Action<decimal>, string> computeFunction = Checksum.ComputeSha1;
-            computeFunction.BeginInvoke(fileInfo.FullName, this.OnComputeProgress, this.OnComputeDone, computeFunction);
+            Func<string, ChecksumMethod, Action<decimal>, string> computeFunction = Checksum.ComputeChecksum;
+            computeFunction.BeginInvoke(
+                fileInfo.FullName,
+                this._methodMd5.Checked ? ChecksumMethod.Md5 : ChecksumMethod.Sha1,
+                this.OnComputeProgress,
+                this.OnComputeDone,
+                computeFunction);
         }
 
 
@@ -151,7 +159,7 @@ namespace Gardian.Utilities.ChecksumValidator
             string error = null;
             try
             {
-                var test = (Func<string, Action<decimal>, string>)result.AsyncState;
+                var test = (Func<string, ChecksumMethod, Action<decimal>, string>)result.AsyncState;
                 checksum = test.EndInvoke(result);
             }
             catch (Exception ex)
@@ -191,6 +199,7 @@ namespace Gardian.Utilities.ChecksumValidator
         /// </summary>
         private void OnComputeReportResults(string checksum, string error)
         {
+            this._methodsContainer.Enabled = true;
             this._checksumLabel.Enabled = true;
             this._checksum.Enabled = true;
             this._checksumPaste.Enabled = true;
