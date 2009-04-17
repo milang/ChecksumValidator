@@ -74,7 +74,7 @@ namespace Gardian.Utilities.ChecksumValidator
                 DereferenceLinks = true,
                 Multiselect = false,
                 Title = "Select file to compute checksum for",
-                Filter = "Executable files (*.exe;*.msi;*.msu)|*.exe;*.msi;*.msu|All files (*.*)|*.*",
+                Filter = "Executable files (*.exe;*.msi;*.msu;*.iso)|*.exe;*.msi;*.msu;*.iso|All files (*.*)|*.*",
             })
             {
                 if (!string.IsNullOrEmpty(this._file.Text))
@@ -143,7 +143,11 @@ namespace Gardian.Utilities.ChecksumValidator
             Func<string, ChecksumMethod, Action<decimal>, string> computeFunction = Checksum.ComputeChecksum;
             computeFunction.BeginInvoke(
                 fileInfo.FullName,
-                this._methodMd5.Checked ? ChecksumMethod.Md5 : ChecksumMethod.Sha1,
+                this._methodMd5.Checked
+                    ? ChecksumMethod.MD5
+                    : this._methodCrc32.Checked
+                        ? ChecksumMethod.CRC32
+                        : ChecksumMethod.SHA1,
                 this.OnComputeProgress,
                 this.OnComputeDone,
                 computeFunction);

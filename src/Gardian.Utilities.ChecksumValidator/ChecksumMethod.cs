@@ -6,9 +6,12 @@
     /// </summary>
     internal enum ChecksumMethod
     {
+        // ReSharper disable InconsistentNaming
         None = 0,
-        Sha1,
-        Md5,
+        SHA1,
+        MD5,
+        CRC32,
+        // ReSharper restore InconsistentNaming
     }
 
 }

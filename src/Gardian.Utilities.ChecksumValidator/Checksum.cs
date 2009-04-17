@@ -40,8 +40,9 @@ namespace Gardian.Utilities.ChecksumValidator
         {
             switch (method)
             {
-                case ChecksumMethod.Sha1: return new SHA1CryptoServiceProvider();
-                case ChecksumMethod.Md5: return new MD5CryptoServiceProvider();
+                case ChecksumMethod.SHA1: return new SHA1CryptoServiceProvider();
+                case ChecksumMethod.MD5: return new MD5CryptoServiceProvider();
+                case ChecksumMethod.CRC32: return new CRC32();
                 default: throw new NotSupportedException(string.Concat("Requested checksum method ", method, " is not supported"));
             }
         }

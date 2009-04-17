@@ -45,6 +45,7 @@
             this._result = new System.Windows.Forms.TextBox();
             this._resultCompute = new System.Windows.Forms.Button();
             this._timer = new System.Windows.Forms.Timer(this.components);
+            this._methodCrc32 = new System.Windows.Forms.RadioButton();
             layout = new System.Windows.Forms.TableLayoutPanel();
             cancel = new System.Windows.Forms.Button();
             layout.SuspendLayout();
@@ -92,10 +93,11 @@
             this._methodsContainer.Controls.Add(this._methodLabel);
             this._methodsContainer.Controls.Add(this._methodSha1);
             this._methodsContainer.Controls.Add(this._methodMd5);
+            this._methodsContainer.Controls.Add(this._methodCrc32);
             this._methodsContainer.Location = new System.Drawing.Point(6, 9);
             this._methodsContainer.Margin = new System.Windows.Forms.Padding(0);
             this._methodsContainer.Name = "_methodsContainer";
-            this._methodsContainer.Size = new System.Drawing.Size(214, 23);
+            this._methodsContainer.Size = new System.Drawing.Size(279, 23);
             this._methodsContainer.TabIndex = 0;
             // 
             // _methodLabel
@@ -259,6 +261,17 @@
             // 
             this._timer.Interval = 20;
             // 
+            // _methodCrc32
+            // 
+            this._methodCrc32.AutoSize = true;
+            this._methodCrc32.Location = new System.Drawing.Point(217, 3);
+            this._methodCrc32.Name = "_methodCrc32";
+            this._methodCrc32.Size = new System.Drawing.Size(59, 17);
+            this._methodCrc32.TabIndex = 1;
+            this._methodCrc32.TabStop = true;
+            this._methodCrc32.Text = "CRC32";
+            this._methodCrc32.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AcceptButton = this._resultCompute;
@@ -299,5 +312,6 @@
         private System.Windows.Forms.RadioButton _methodMd5;
         private System.Windows.Forms.FlowLayoutPanel _methodsContainer;
         private System.Windows.Forms.Label _methodLabel;
+        private System.Windows.Forms.RadioButton _methodCrc32;
     }
 }
