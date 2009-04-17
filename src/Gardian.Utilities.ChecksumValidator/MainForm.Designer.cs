@@ -35,6 +35,7 @@
             this._methodLabel = new System.Windows.Forms.Label();
             this._methodSha1 = new System.Windows.Forms.RadioButton();
             this._methodMd5 = new System.Windows.Forms.RadioButton();
+            this._methodCrc32 = new System.Windows.Forms.RadioButton();
             this._fileLabel = new System.Windows.Forms.Label();
             this._file = new System.Windows.Forms.TextBox();
             this._fileBrowse = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this._result = new System.Windows.Forms.TextBox();
             this._resultCompute = new System.Windows.Forms.Button();
             this._timer = new System.Windows.Forms.Timer(this.components);
-            this._methodCrc32 = new System.Windows.Forms.RadioButton();
             layout = new System.Windows.Forms.TableLayoutPanel();
             cancel = new System.Windows.Forms.Button();
             layout.SuspendLayout();
@@ -133,6 +133,16 @@
             this._methodMd5.Text = "MD5";
             this._methodMd5.UseVisualStyleBackColor = true;
             // 
+            // _methodCrc32
+            // 
+            this._methodCrc32.AutoSize = true;
+            this._methodCrc32.Location = new System.Drawing.Point(217, 3);
+            this._methodCrc32.Name = "_methodCrc32";
+            this._methodCrc32.Size = new System.Drawing.Size(59, 17);
+            this._methodCrc32.TabIndex = 0;
+            this._methodCrc32.Text = "CRC32";
+            this._methodCrc32.UseVisualStyleBackColor = true;
+            // 
             // _fileLabel
             // 
             this._fileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -187,7 +197,6 @@
             this._checksum.Name = "_checksum";
             this._checksum.Size = new System.Drawing.Size(340, 20);
             this._checksum.TabIndex = 0;
-            this._checksum.TextChanged += new System.EventHandler(this.CheckComputationAvailability);
             // 
             // _checksumPaste
             // 
@@ -260,17 +269,6 @@
             // _timer
             // 
             this._timer.Interval = 20;
-            // 
-            // _methodCrc32
-            // 
-            this._methodCrc32.AutoSize = true;
-            this._methodCrc32.Location = new System.Drawing.Point(217, 3);
-            this._methodCrc32.Name = "_methodCrc32";
-            this._methodCrc32.Size = new System.Drawing.Size(59, 17);
-            this._methodCrc32.TabIndex = 1;
-            this._methodCrc32.TabStop = true;
-            this._methodCrc32.Text = "CRC32";
-            this._methodCrc32.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

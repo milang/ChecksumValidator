@@ -57,8 +57,7 @@ namespace Gardian.Utilities.ChecksumValidator
         /// </summary>
         private void CheckComputationAvailability(object sender, EventArgs e)
         {
-            var enabled = !string.IsNullOrEmpty(this._file.Text) && !string.IsNullOrEmpty(this._checksum.Text);
-            this._resultCompute.Enabled = enabled;
+            this._resultCompute.Enabled = !string.IsNullOrEmpty(this._file.Text);
         }
 
 
