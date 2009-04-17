@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TableLayoutPanel layout;
             System.Windows.Forms.Button cancel;
+            System.Windows.Forms.ToolTip tooltop;
             this._methodsContainer = new System.Windows.Forms.FlowLayoutPanel();
             this._methodLabel = new System.Windows.Forms.Label();
             this._methodSha1 = new System.Windows.Forms.RadioButton();
@@ -38,6 +39,7 @@
             this._methodCrc32 = new System.Windows.Forms.RadioButton();
             this._fileLabel = new System.Windows.Forms.Label();
             this._file = new System.Windows.Forms.TextBox();
+            this._filePaste = new System.Windows.Forms.Button();
             this._fileBrowse = new System.Windows.Forms.Button();
             this._checksumLabel = new System.Windows.Forms.Label();
             this._checksum = new System.Windows.Forms.TextBox();
@@ -48,6 +50,7 @@
             this._timer = new System.Windows.Forms.Timer(this.components);
             layout = new System.Windows.Forms.TableLayoutPanel();
             cancel = new System.Windows.Forms.Button();
+            tooltop = new System.Windows.Forms.ToolTip(this.components);
             layout.SuspendLayout();
             this._methodsContainer.SuspendLayout();
             this.SuspendLayout();
@@ -56,13 +59,15 @@
             // 
             layout.AutoSize = true;
             layout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            layout.ColumnCount = 2;
+            layout.ColumnCount = 3;
+            layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             layout.Controls.Add(this._methodsContainer, 0, 0);
             layout.Controls.Add(this._fileLabel, 0, 1);
             layout.Controls.Add(this._file, 0, 2);
-            layout.Controls.Add(this._fileBrowse, 1, 2);
+            layout.Controls.Add(this._filePaste, 1, 2);
+            layout.Controls.Add(this._fileBrowse, 2, 2);
             layout.Controls.Add(this._checksumLabel, 0, 3);
             layout.Controls.Add(this._checksum, 0, 4);
             layout.Controls.Add(this._checksumPaste, 1, 4);
@@ -81,7 +86,7 @@
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            layout.Size = new System.Drawing.Size(458, 200);
+            layout.Size = new System.Drawing.Size(478, 200);
             layout.TabIndex = 0;
             // 
             // _methodsContainer
@@ -163,19 +168,42 @@
             this._file.TabIndex = 0;
             this._file.TextChanged += new System.EventHandler(this.CheckComputationAvailability);
             // 
+            // _filePaste
+            // 
+            this._filePaste.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._filePaste.AutoSize = true;
+            this._filePaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this._filePaste.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Paste;
+            this._filePaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._filePaste.Location = new System.Drawing.Point(355, 57);
+            this._filePaste.Name = "_filePaste";
+            this._filePaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._filePaste.Size = new System.Drawing.Size(28, 25);
+            this._filePaste.TabIndex = 0;
+            tooltop.SetToolTip(this._filePaste, "Paste clipboard as \"File to verify\"");
+            this._filePaste.UseVisualStyleBackColor = true;
+            this._filePaste.Click += new System.EventHandler(this.OnFilePaste);
+            // 
             // _fileBrowse
             // 
-            this._fileBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this._fileBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._fileBrowse.AutoSize = true;
+            this._fileBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._fileBrowse.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Open;
             this._fileBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._fileBrowse.Location = new System.Drawing.Point(355, 57);
+            this._fileBrowse.Location = new System.Drawing.Point(386, 57);
+            this._fileBrowse.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this._fileBrowse.Name = "_fileBrowse";
-            this._fileBrowse.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
-            this._fileBrowse.Size = new System.Drawing.Size(94, 25);
+            this._fileBrowse.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._fileBrowse.Size = new System.Drawing.Size(83, 25);
             this._fileBrowse.TabIndex = 0;
             this._fileBrowse.Text = " Browse";
             this._fileBrowse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            tooltop.SetToolTip(this._fileBrowse, "Browse for \"File to verify\"");
             this._fileBrowse.UseVisualStyleBackColor = true;
             this._fileBrowse.Click += new System.EventHandler(this.OnBrowse);
             // 
@@ -186,9 +214,9 @@
             this._checksumLabel.Location = new System.Drawing.Point(6, 94);
             this._checksumLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
             this._checksumLabel.Name = "_checksumLabel";
-            this._checksumLabel.Size = new System.Drawing.Size(108, 13);
+            this._checksumLabel.Size = new System.Drawing.Size(107, 13);
             this._checksumLabel.TabIndex = 0;
-            this._checksumLabel.Text = "Expected Checksum:";
+            this._checksumLabel.Text = "Expected checksum:";
             // 
             // _checksum
             // 
@@ -200,19 +228,24 @@
             // 
             // _checksumPaste
             // 
-            this._checksumPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this._checksumPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._checksumPaste.AutoSize = true;
+            this._checksumPaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            layout.SetColumnSpan(this._checksumPaste, 2);
             this._checksumPaste.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Paste;
             this._checksumPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._checksumPaste.Location = new System.Drawing.Point(355, 110);
             this._checksumPaste.Name = "_checksumPaste";
-            this._checksumPaste.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
-            this._checksumPaste.Size = new System.Drawing.Size(94, 25);
+            this._checksumPaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._checksumPaste.Size = new System.Drawing.Size(114, 25);
             this._checksumPaste.TabIndex = 0;
-            this._checksumPaste.Text = " Paste";
+            this._checksumPaste.Text = "Paste";
             this._checksumPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            tooltop.SetToolTip(this._checksumPaste, "Paste clipboard as \"Expected checksum\"");
             this._checksumPaste.UseVisualStyleBackColor = true;
-            this._checksumPaste.Click += new System.EventHandler(this.OnPaste);
+            this._checksumPaste.Click += new System.EventHandler(this.OnChecksumPaste);
             // 
             // _resultLabel
             // 
@@ -222,9 +255,9 @@
             this._resultLabel.Location = new System.Drawing.Point(6, 147);
             this._resultLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
             this._resultLabel.Name = "_resultLabel";
-            this._resultLabel.Size = new System.Drawing.Size(111, 13);
+            this._resultLabel.Size = new System.Drawing.Size(110, 13);
             this._resultLabel.TabIndex = 0;
-            this._resultLabel.Text = "Computed Checksum:";
+            this._resultLabel.Text = "Computed checksum:";
             // 
             // _result
             // 
@@ -241,16 +274,18 @@
             // 
             this._resultCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._resultCompute.AutoSize = true;
+            layout.SetColumnSpan(this._resultCompute, 2);
             this._resultCompute.Enabled = false;
             this._resultCompute.Image = global::Gardian.Utilities.ChecksumValidator.Properties.Resources.Run;
             this._resultCompute.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._resultCompute.Location = new System.Drawing.Point(355, 163);
             this._resultCompute.Name = "_resultCompute";
             this._resultCompute.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
-            this._resultCompute.Size = new System.Drawing.Size(94, 25);
+            this._resultCompute.Size = new System.Drawing.Size(114, 25);
             this._resultCompute.TabIndex = 0;
             this._resultCompute.Text = "Compute";
             this._resultCompute.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            tooltop.SetToolTip(this._resultCompute, "Compute checksum and verify it against the specified expected value");
             this._resultCompute.UseVisualStyleBackColor = true;
             this._resultCompute.Click += new System.EventHandler(this.OnCompute);
             // 
@@ -278,13 +313,13 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = cancel;
-            this.ClientSize = new System.Drawing.Size(494, 274);
+            this.ClientSize = new System.Drawing.Size(594, 274);
             this.Controls.Add(layout);
             this.Controls.Add(cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Checksum verifier";
+            this.Text = "Main dialog";
             layout.ResumeLayout(false);
             layout.PerformLayout();
             this._methodsContainer.ResumeLayout(false);
@@ -311,5 +346,6 @@
         private System.Windows.Forms.FlowLayoutPanel _methodsContainer;
         private System.Windows.Forms.Label _methodLabel;
         private System.Windows.Forms.RadioButton _methodCrc32;
+        private System.Windows.Forms.Button _filePaste;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -30,6 +29,7 @@ namespace Gardian.Utilities.ChecksumValidator
             this.InitializeComponent();
             this.Font = SystemFonts.MessageBoxFont;
             this.Icon = Properties.Resources.App;
+            this.Text = Properties.Resources.Title;
             var boldFont = new Font(this.Font, FontStyle.Bold);
             this._methodLabel.Font = this._fileLabel.Font = this._checksumLabel.Font = this._resultLabel.Font = boldFont;
 
@@ -123,6 +123,24 @@ namespace Gardian.Utilities.ChecksumValidator
         //-------------------------------------------------
         /// <summary>
         /// </summary>
+        private void OnChecksumPaste(object sender, EventArgs e)
+        {
+            if (Clipboard.ContainsText())
+            {
+                this._checksum.Text = Clipboard.GetText();
+                this._checksum.Select(this._checksum.Text.Length, 0);
+                this._greenPulser.Pulse(this._checksum);
+                if (this._resultCompute.Enabled)
+                {
+                    this._resultCompute.Focus();
+                }
+            }
+        }
+
+
+        //-------------------------------------------------
+        /// <summary>
+        /// </summary>
         private void OnCompute(object sender, EventArgs e)
         {
             if (this._resultCompute.Tag != null)
@@ -139,9 +157,9 @@ namespace Gardian.Utilities.ChecksumValidator
                 if (fileInfo == null || !fileInfo.Exists)
                 {
                     this._file.Focus();
-                    //this._file.Select(0, this._file.Text.Length);
                     this._result.ForeColor = Color.Red;
                     this._result.Text = "Specified file does not exist or is not readable";
+                    this._result.Select(this._result.Text.Length, 0);
 
                     this._redPulser.Pulse(this._file);
                     this._redPulser.Pulse(this._result);
@@ -154,6 +172,7 @@ namespace Gardian.Utilities.ChecksumValidator
                 this._checksumPaste.Enabled = false;
                 this._fileLabel.Enabled = false;
                 this._file.Enabled = false;
+                this._filePaste.Enabled = false;
                 this._fileBrowse.Enabled = false;
                 this._resultLabel.Enabled = true;
                 this._result.ForeColor = SystemColors.ControlText;
@@ -222,10 +241,9 @@ namespace Gardian.Utilities.ChecksumValidator
             }
             else
             {
-                this._result.Text = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "Please wait... ({0:0.0%} complete)",
-                    percentage);
+                var percentageStr = percentage.ToString("0.0%");
+                this.Text = string.Concat(percentageStr, " - ", Properties.Resources.Title);
+                this._result.Text = string.Concat("Please wait... (", percentageStr, " complete)");
             }
         }
 
@@ -235,12 +253,14 @@ namespace Gardian.Utilities.ChecksumValidator
         /// </summary>
         private void OnComputeReportResults(string checksum, string error)
         {
+            this.Text = Properties.Resources.Title;
             this._methodsContainer.Enabled = true;
             this._checksumLabel.Enabled = true;
             this._checksum.Enabled = true;
             this._checksumPaste.Enabled = true;
             this._fileLabel.Enabled = true;
             this._file.Enabled = true;
+            this._filePaste.Enabled = true;
             this._fileBrowse.Enabled = true;
             this._resultCompute.Text = "Compute";
             this._resultCompute.Image = Properties.Resources.Run;
@@ -280,6 +300,8 @@ namespace Gardian.Utilities.ChecksumValidator
                     this._redPulser.Pulse(this._result);
                 }
             }
+
+            this._result.Select(this._result.Text.Length, 0);
         }
 
 
@@ -303,17 +325,15 @@ namespace Gardian.Utilities.ChecksumValidator
         //-------------------------------------------------
         /// <summary>
         /// </summary>
-        private void OnPaste(object sender, EventArgs e)
+        private void OnFilePaste(object sender, EventArgs e)
         {
             if (Clipboard.ContainsText())
             {
-                this._checksum.Text = Clipboard.GetText();
-                this._greenPulser.Pulse(this._checksum);
+                this._file.Text = Clipboard.GetText();
+                this._file.Select(this._file.Text.Length, 0);
+                this._greenPulser.Pulse(this._file);
                 this.CheckComputationAvailability(null, null);
-                if (this._resultCompute.Enabled)
-                {
-                    this._resultCompute.Focus();
-                }
+                this._checksum.Focus();
             }
         }
 
