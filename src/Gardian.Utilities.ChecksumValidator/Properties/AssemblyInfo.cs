@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: Guid("10ABE120-00E5-43FB-8101-16ACA2A31A04")]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("1.1")]
-[assembly: AssemblyFileVersion("1.1.2009.04170")]
-[assembly: AssemblyProduct("ChecksumValidator v1.1 "
+[assembly: AssemblyVersion("1.2")]
+[assembly: AssemblyFileVersion("1.2.2009.05130")]
+[assembly: AssemblyProduct("ChecksumValidator v1.2 "
 #if DEBUG
 	+ "(debug)"
 #else

@@ -242,7 +242,13 @@ namespace Gardian.Utilities.ChecksumValidator
             else
             {
                 var percentageStr = percentage.ToString("0.0%");
-                this.Text = string.Concat(percentageStr, " - ", Properties.Resources.Title);
+                var currentTicks = DateTime.Now.Ticks;
+                if (currentTicks > this._nextTitleUpdateTicks)
+                {
+                    const long delay = 150 * TimeSpan.TicksPerMillisecond;
+                    this._nextTitleUpdateTicks = currentTicks + delay;
+                    this.Text = string.Concat(percentageStr, " - ", Properties.Resources.Title);
+                }
                 this._result.Text = string.Concat("Please wait... (", percentageStr, " complete)");
             }
         }
@@ -340,6 +346,7 @@ namespace Gardian.Utilities.ChecksumValidator
 
         private string _error;
         private readonly ColorPulser _greenPulser;
+        private long _nextTitleUpdateTicks; // earliest time when titlebar can be updated again (DateTime ticks); for discussion on reason behind this see http://stackoverflow.com/questions/380380/how-to-force-a-redraw-of-my-applications-entry-in-the-taskbar
         private readonly ColorPulser _redPulser;
 
     }
