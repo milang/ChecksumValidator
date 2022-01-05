@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "67aa0267-46db-4857-bfc1-87c9ab535542": {
+      "ProjectGuid": "67aa0267-46db-4857-bfc1-87c9ab535542",
+      "DisplayName": "Gardian.Utilities.ChecksumValidator",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
