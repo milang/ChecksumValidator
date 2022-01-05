@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Security;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -99,7 +98,7 @@ namespace Gardian.Utilities.ChecksumValidator
                     {
                         dlg.InitialDirectory = Path.GetDirectoryName(this._file.Text);
                     }
-                    catch (ArgumentException) { }
+                    catch (ArgumentException) {}
                 }
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
@@ -153,32 +152,8 @@ namespace Gardian.Utilities.ChecksumValidator
             {
                 this._result.Enabled = true;
 
-                // Included all exception handling for the FileInfo
                 FileInfo fileInfo = null;
-                try
-                {
-                    fileInfo = new FileInfo(this._file.Text);
-                }
-                catch (ArgumentNullException)
-                {
-                    MessageBox.Show("ArgumentNullException Occured: The file name might be null");
-                }
-                catch (SecurityException)
-                {
-                    MessageBox.Show("SecurityException Occured: The caller does not have the required permission");
-                }
-                catch (ArgumentException)
-                {
-                    MessageBox.Show("ArgumentException Occured: The file name might be empty, might contains only white spaces, or might contain invalid characters");
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    MessageBox.Show("UnauthorizedAccessException Occured:  The access for the file might be restricted");
-                }
-                catch (NotSupportedException)
-                {
-                    MessageBox.Show("NotSupportedException Occured: The file name might contain : in the middle of its string");
-                }
+                try { fileInfo = new FileInfo(this._file.Text); } catch (ArgumentException) {}
                 if (fileInfo == null || !fileInfo.Exists)
                 {
                     this._file.Focus();
